@@ -1,0 +1,29 @@
+# Python environments
+.venv/
+venv/
+env/
+
+# Python bytecode and test/tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local configuration, logs, and received files
+/config/server.json
+/config/server.json.tmp
+logs/
+Received Files/
+
+# Build artifacts
+/build/
+/dist/
+*.egg-info/
+
+# Local editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
