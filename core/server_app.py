@@ -37,7 +37,7 @@ _appeal_lock = threading.Lock()
 _appeal_last_submitted = {}
 ICON_DIRECTORY = Path(__file__).resolve().parent.parent / "asset" / "icon"
 ICON_FILES = frozenset({
-    "add.png", "blocked.png", "copy.png", "folder.png", "pause.png", "plus.png",
+    "file.png", "blocked.png", "copy.png", "folder.png", "pause.png", "add.png",
     "refresh.png", "resume.png", "save.png", "unblocked.png",
 })
 ADMIN_HTML = r"""<!doctype html>
@@ -118,13 +118,13 @@ pre{white-space:pre-wrap;max-height:240px;overflow:auto;background:#f7faf7;paddi
 <section class="card"><h2>Shared folders &amp; files</h2>
 <p class="muted">Enter an absolute path on this computer. Only the selected paths are exposed.</p>
 <label>Absolute path</label><input id="path" type="text" placeholder="C:\Users\you\Videos or /home/you/share">
-<button class="secondary" onclick="browsePath('folder')"><img class="btn-icon" src="/asset/icon/folder.png" alt="">Browse folder…</button><button class="secondary" onclick="browsePath('file')"><img class="btn-icon" src="/asset/icon/add.png" alt="">Browse file…</button>
+<button class="secondary" onclick="browsePath('folder')"><img class="btn-icon" src="/asset/icon/folder.png" alt="">Browse folder…</button><button class="secondary" onclick="browsePath('file')"><img class="btn-icon" src="/asset/icon/file.png" alt="">Browse file…</button>
 <label>Virtual name (optional)</label><input id="shareName" type="text" placeholder="Videos">
-<button onclick="addShare()"><img class="btn-icon white-icon" src="/asset/icon/plus.png" alt="">Add to shared library</button>
+<button onclick="addShare()"><img class="btn-icon white-icon" src="/asset/icon/add.png" alt="">Add to shared library</button>
 <h3>Currently shared</h3><div id="shares"></div>
 <label>Exclude a path</label><input id="denyPath" type="text" placeholder="Absolute path to exclude">
-<button class="secondary" onclick="browsePath('folder','denyPath')"><img class="btn-icon" src="/asset/icon/folder.png" alt="">Browse folder…</button><button class="secondary" onclick="browsePath('file','denyPath')"><img class="btn-icon" src="/asset/icon/add.png" alt="">Browse file…</button>
-<button onclick="addDeny()"><img class="btn-icon white-icon" src="/asset/icon/plus.png" alt="">Add exclusion rule</button><div id="rules"></div></section>
+<button class="secondary" onclick="browsePath('folder','denyPath')"><img class="btn-icon" src="/asset/icon/folder.png" alt="">Browse folder…</button><button class="secondary" onclick="browsePath('file','denyPath')"><img class="btn-icon" src="/asset/icon/file.png" alt="">Browse file…</button>
+<button onclick="addDeny()"><img class="btn-icon white-icon" src="/asset/icon/add.png" alt="">Add exclusion rule</button><div id="rules"></div></section>
 <section class="card full"><h2>Server status</h2><p id="status" class="statusline"><span id="statusDot" class="dot"></span><span id="statusText">Checking server…</span></p><p class="muted">Receivers can connect using the LAN address printed in your terminal. Dashboard administration is only available on this computer.</p><button class="secondary" onclick="refresh()"><img class="btn-icon" src="/asset/icon/refresh.png" alt="">Refresh status</button></section>
 <section class="card full"><h2>Connect to this sender</h2><p class="muted">Open the link on another device or scan the QR code. Keep both devices on the same local network.</p><div class="connection-layout"><div class="connection-copy"><div class="share"><b><a id="receiverUrl" target="_blank" rel="noopener">Loading address…</a></b> <button class="secondary" onclick="copyReceiverUrl()"><img class="btn-icon" src="/asset/icon/copy.png" alt="">Copy link</button></div><p id="linkMsg" class="muted"></p></div><img id="receiverQr" class="qr-code" alt="QR code for receiver link"></div></section>
 <section class="card full"><h2>Connected devices</h2><p class="muted">Devices are identified by their network IP. Pause temporarily disables sharing for the selected duration; Block disables it until you unblock the device.</p><div id="devices"></div></section>
