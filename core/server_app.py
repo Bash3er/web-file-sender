@@ -90,7 +90,7 @@ button:has(.btn-icon){display:inline-flex;align-items:center;justify-content:cen
 .transfer-actions{display:flex;gap:6px;margin-top:8px}.transfer-actions button{margin:0;padding:7px 10px;font-size:12px}
 .qr-wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.qr-code{width:156px;height:156px;padding:8px;border:1px solid #e2eae3;border-radius:12px;background:#fff}
 .connection-layout{display:flex;align-items:center;justify-content:space-between;gap:24px}.connection-copy{min-width:0;flex:1}.connection-copy .share{padding:14px 0}
-.receiver-name-dialog{width:min(92vw,420px);padding:24px;border:1px solid #e2eae3;border-radius:18px;box-shadow:0 24px 80px #172b2540;color:#17211f}
+.receiver-header-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;min-width:0}.receiver-identity{max-width:min(38vw,220px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#d8e5dc;font-size:13px}.receiver-name-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;flex:0 0 auto}.receiver-name-button img{width:16px;height:16px;object-fit:contain;opacity:.8}.receiver-name-dialog{width:min(92vw,420px);padding:24px;border:1px solid #e2eae3;border-radius:18px;box-shadow:0 24px 80px #172b2540;color:#17211f}
 .receiver-name-dialog::backdrop{background:#172b2580;backdrop-filter:blur(3px)}
 .receiver-name-dialog h2{margin:0 0 8px}.receiver-name-dialog p{color:#708078;font-size:13px;line-height:1.5}
 .receiver-name-dialog label{display:block;margin:14px 0 6px;font-size:13px;font-weight:650}
@@ -205,20 +205,8 @@ video{width:100%;max-height:65vh;background:#0b110e;border-radius:12px}
 .top{animation:header-in .55s ease-out both}.list{animation:surface-in .45s ease-out both}.row{animation:row-in .3s ease-out both;transition:background .18s,transform .18s}.row:hover{background:#f4f7f4;transform:translateX(3px)}.icon{transition:transform .2s,background .2s}.row:hover .icon{transform:scale(1.06);background:#e8f4e5}
 @keyframes header-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}@keyframes surface-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes row-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-.receiver-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.receiver-profile{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;max-width:100%}
-#receiverIdentity{display:inline-block;max-width:min(36vw,240px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#405548;font-size:13px;font-weight:650}
-.name-edit-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;flex:0 0 auto}
-.name-edit-button img{width:15px;height:15px;object-fit:contain}
-.receiver-name-dialog{width:min(92vw,420px);padding:24px;border:1px solid #e2eae3;border-radius:18px;box-shadow:0 24px 80px #172b2540;color:#17211f}
-.receiver-name-dialog::backdrop{background:#172b2580;backdrop-filter:blur(3px)}
-.receiver-name-dialog h2{margin:0 0 8px}.receiver-name-dialog p{color:#708078;font-size:13px;line-height:1.5}
-.receiver-name-dialog label{display:block;margin:14px 0 6px;font-size:13px;font-weight:650}
-.receiver-name-dialog input{width:100%;padding:11px 12px;border:1px solid #dbe5dc;border-radius:10px;font:inherit}
-.receiver-name-dialog button{margin-top:12px}
-@media(max-width:760px){main{margin:20px auto;padding:0 13px 28px}.top{padding:16px}.receiver-top{align-items:flex-start;flex-wrap:wrap}.receiver-profile{margin-left:auto;max-width:100%}#receiverIdentity{max-width:48vw}.toolbar{align-items:flex-start;flex-direction:column}.nav-actions{width:100%}.actions{width:100%;flex-wrap:wrap}.actions button{flex:1;padding:10px 8px;font-size:12px}.list{padding:5px 14px}.row{gap:10px}.row>a{font-size:12px}}
-@media(max-width:380px){.name-edit-button{padding:8px}.name-edit-button .button-label{display:none}#receiverIdentity{max-width:55vw}}
-</style></head><body><header class="top receiver-top"><div class="brand"><div class="logo">↗</div><div><h1 id="title">Shared files</h1><p>Browse and download files shared with you</p></div></div><div class="receiver-profile"><span id="receiverIdentity"></span><button id="changeReceiverName" class="secondary name-edit-button" onclick="openReceiverNameDialog()" title="Change device name" aria-label="Change device name"><img src="/asset/icon/edit.png" alt=""><span class="button-label">Set name</span></button></div></header>
+@media(max-width:760px){.receiver-header-actions{gap:6px}.receiver-identity{max-width:30vw;font-size:12px}.receiver-name-button{padding:8px 10px;font-size:12px}.receiver-name-button .button-label{display:none}.receiver-name-button img{margin:0}main{margin:20px auto;padding:0 13px 28px}.top{padding:16px}.toolbar{align-items:flex-start;flex-direction:column}.nav-actions{width:100%}.actions{width:100%;flex-wrap:wrap}.actions button{flex:1;padding:10px 8px;font-size:12px}.list{padding:5px 14px}.row{gap:10px}.row>a{font-size:12px}}
+</style></head><body><header class="top"><div class="brand"><div class="logo">↗</div><div><h1 id="title">Shared files</h1><p>Browse and download files shared with you</p></div></div><div class="receiver-header-actions"><span id="receiverIdentity" class="receiver-identity"></span><button id="changeReceiverName" class="secondary receiver-name-button" onclick="openReceiverNameDialog()"><img src="/asset/icon/edit.png" alt=""><span class="button-label">Set name</span></button></div></header>
 <dialog id="receiverNameDialog" class="receiver-name-dialog">
 <form onsubmit="submitReceiverName(event)"><h2>Name this device</h2><p>Choose a name so the sender can recognize this receiver in their device and download lists. It is saved on this device and sender.</p><label for="receiverNameInput">Device name</label><input id="receiverNameInput" maxlength="60" required autocomplete="nickname" placeholder="e.g. Vinay's phone"><div id="receiverNameError" class="error" role="alert"></div><button type="submit">Save name &amp; continue</button></form>
 </dialog>
