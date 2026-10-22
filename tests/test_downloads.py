@@ -276,7 +276,9 @@ class DownloadZipTests(unittest.TestCase):
         self.assertNotIn(b"#2875f5", response.data)
 
     def test_blocked_receiver_can_submit_appeal(self):
-        address = "192.168.1.83"
+        # Use a dedicated test-only address so the process-wide rate limiter
+        # cannot inherit a timestamp from another test that uses a shared IP.
+        address = "203.0.113.83"
         self.config["blocked_clients"] = [address]
         with patch("core.server_app.cfg", return_value=self.config), patch(
             "core.server_app.save_config"
