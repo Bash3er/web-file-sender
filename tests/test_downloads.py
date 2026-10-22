@@ -369,7 +369,7 @@ class DownloadZipTests(unittest.TestCase):
 
     def test_supplied_icons_are_served_for_ui(self):
         icon_names = (
-            "add.png", "blocked.png", "copy.png", "folder.png", "pause.png", "plus.png",
+            "add.png", "blocked.png", "copy.png", "folder.png", "pause.png",
             "refresh.png", "resume.png", "save.png", "unblocked.png",
         )
         for filename in icon_names:
@@ -391,9 +391,9 @@ class DownloadZipTests(unittest.TestCase):
         self.assertIn(b"browsePath('file','denyPath')", response.data)
         self.assertEqual(response.data.count(b"onclick=\"browsePath('file'"), 2)
         self.assertEqual(response.data.count(b"/asset/icon/add.png"), 2)
-        self.assertIn(b'<img class="btn-icon white-icon" src="/asset/icon/plus.png" alt="">Add to shared library', response.data)
+        self.assertIn(b'<img class="btn-icon white-icon" src="/asset/icon/add.png" alt="">Add to shared library', response.data)
         self.assertIn(b"Add to shared library", response.data)
-        self.assertIn(b'<img class="btn-icon white-icon" src="/asset/icon/plus.png" alt="">Add exclusion rule', response.data)
+        self.assertIn(b'<img class="btn-icon white-icon" src="/asset/icon/add.png" alt="">Add exclusion rule', response.data)
 
     def test_dashboard_shows_receiver_link_and_device_controls(self):
         with patch("core.server_app.cfg", return_value=self.config):
@@ -977,7 +977,8 @@ class DownloadZipTests(unittest.TestCase):
                 environ_overrides={"REMOTE_ADDR": "127.0.0.1"},
             )
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(os.path.samefile(response.get_json()["path"], selected))
+        returned_path = response.get_json()["path"]
+        self.assertTrue(os.path.samefile(returned_path, selected))
         picker.assert_called_once_with("folder")
 
     def test_download_zip_rejects_traversal(self):
