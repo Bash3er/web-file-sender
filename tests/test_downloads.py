@@ -280,7 +280,7 @@ class DownloadZipTests(unittest.TestCase):
         self.config["blocked_clients"] = [address]
         with patch("core.server_app.cfg", return_value=self.config), patch(
             "core.server_app.save_config"
-        ), patch("core.server_app._appeal_last_submitted", {}):
+        ), patch.dict("core.server_app._appeal_last_submitted", {}, clear=True):
             page = self.client.get("/", environ_overrides={"REMOTE_ADDR": address})
             response = self.client.post(
                 "/api/appeals",
